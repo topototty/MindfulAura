@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F4F4F4"
+    tools:context=".Articles.AddArticleActivity">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_arrow"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Создание статьи"
+        android:textSize="24sp"
+        android:textColor="#18556D"
+        android:fontFamily="@font/ubuntu_bold" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/subtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Для ввода форматированного текста статьи, используйте html-разметку"
+        android:textSize="18sp"
+        android:textColor="#18556D"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/date_and_description_back"
+        android:hint="Заголовок"
+        android:inputType="none"
+        android:maxLines="1"
+        android:padding="15dp"/>
+
+    <EditText
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/descriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/date_and_description_back"
+        android:gravity="top"
+        android:hint="Описание"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:padding="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/rte_toolbar_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/articleTextEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/date_and_description_back"
+            android:gravity="top"
+            android:hint="Текст статьи"
+            android:maxLines="10"
+            android:minLines="4"
+            android:padding="15dp"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/boldButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bold_ic"
+                    android:backgroundTint="#fff"
+                    android:text="Bold"
+                    android:tag="b"/>
+
+                <ImageButton
+                    android:id="@+id/italicButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/italic_ic"
+                    android:backgroundTint="#fff"
+                    android:text="Italic"
+                    android:tag="i"/>
+
+                <ImageButton
+                    android:id="@+id/paragraph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/paragraph_ic"
+                    android:backgroundTint="#fff"
+                    android:text="paragraph"
+                    android:tag="p"/>
+
+                <ImageButton
+                    android:id="@+id/h1Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/h1_ic"
+                    android:backgroundTint="#fff"
+                    android:text="h1"
+                    android:tag="h1"/>
+
+                <ImageButton
+                    android:id="@+id/h2Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/h2_ic"
+                    android:backgroundTint="#fff"
+                    android:text="h2"
+                    android:tag="h2"/>
+
+                <ImageButton
+                    android:id="@+id/h3Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/h3_ic"
+                    android:backgroundTint="#fff"
+                    android:text="h3"
+                    android:tag="h3"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+
+    <EditText
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/photoURLEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/date_and_description_back"
+        android:gravity="top"
+        android:hint="URL фото статьи"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
+        android:padding="15dp"/>
+
+    <Button
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/addArticleButton"
+        android:layout_width="157dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:text="Добавить статью"
+        android:textColor="#fff"
+        android:background="@drawable/add_note_button_background_blue"/>
+
+
+</LinearLayout>

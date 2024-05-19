@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            android:src="@drawable/header_profile_settings"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-2dp" />
+
+        <TextView
+            android:id="@+id/userLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="#fff"
+            android:textSize="35dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.133"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.371" />
+
+        <TextView
+            android:id="@+id/userEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="220dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="Email"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/userLogin"
+            app:layout_constraintTop_toBottomOf="@+id/userLogin"
+            app:layout_constraintVertical_bias="0.071" />
+
+        <LinearLayout
+            android:id="@+id/noticeSettingsCard"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/settings_card_background"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+            <TextView
+                android:id="@+id/noticeSettingsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:paddingHorizontal="26dp"
+                android:paddingVertical="15dp"
+                android:text="Уведомления"
+                android:textColor="#0E3341"
+                android:textSize="18dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/notice_ic" />
+
+                <TextView
+                    android:layout_width="225dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:paddingLeft="15dp"
+                    android:text="Подписаться на уведомления"
+                    android:textColor="#0E3341"
+                    android:textSize="16dp" />
+
+                <Switch
+                    android:id="@+id/noticeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileSettings"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/settings_card_background"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noticeSettingsCard">
+
+            <TextView
+                android:id="@+id/cardTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:paddingHorizontal="26dp"
+                android:paddingVertical="15dp"
+                android:text="Профиль"
+                android:textColor="#0E3341"
+                android:textSize="18dp"/>
+
+            <LinearLayout
+                android:id="@+id/resetLoginLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/profile_ic" />
+
+                <TextView
+                    android:id="@+id/firstLine1"
+                    android:layout_width="244dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:paddingLeft="15dp"
+                    android:text="Имя пользователя"
+                    android:textColor="#0E3341"
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/resetLoginButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/gray_arrow_ic" />
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/resetLoginSeparator"
+                android:layout_width="290dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="#D9D9D9" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/password_ic" />
+
+                <TextView
+                    android:id="@+id/secondLine"
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:paddingLeft="15dp"
+                    android:text="Пароль"
+                    android:textColor="#0E3341"
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/resetPasswordButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/gray_arrow_ic" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="290dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="#D9D9D9" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/exit_ic" />
+
+                <TextView
+                    android:id="@+id/logoutTextView"
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:paddingLeft="15dp"
+                    android:text="Выйти"
+                    android:textColor="#0E3341"
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/logoutButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/gray_arrow_ic" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/deleteAccountSeparator"
+                android:layout_width="290dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="#D9D9D9" />
+
+            <LinearLayout
+                android:id="@+id/deleteAccountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="18dp"
+                    android:src="@drawable/delete_profile_ic" />
+
+                <TextView
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:paddingLeft="15dp"
+                    android:text="Удалить профиль"
+                    android:textColor="#0E3341"
+                    android:textSize="16dp" />
+
+                <ImageButton
+                    android:id="@+id/deleteAccountButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/gray_arrow_ic"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

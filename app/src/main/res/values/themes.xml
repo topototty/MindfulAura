@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Основные цвета -->
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorOnPrimary">#23708E</item>
+        <item name="colorPrimaryDark">#1E647F</item>
+        <item name="colorAccent">#2D2926</item>
+        <item name="android:colorButtonNormal">#18556D</item>
+
+        <!-- Цвета для текста -->
+        <item name="android:textColorPrimary">#0E3341</item>
+        <item name="android:textColorTertiary">#1E647F</item>
+        <item name="android:textColor">#BDBDBD</item>
+        <item name="android:textColorHint">#BDBDBD</item>
+
+        <!-- Цвет для карточек -->
+        <item name="cardBackgroundColor">#F4F4F4</item>
+
+        <!-- Шрифт -->
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+
+    </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#1E647F</item>
+        <item name="android:textColorPrimary">#0E3341</item>
+        <item name="android:background">@drawable/round_background</item>
+        <item name="android:textColor">#0E3341</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+</resources>

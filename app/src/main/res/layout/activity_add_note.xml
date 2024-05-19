@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F4F4F4"
+    tools:context=".Notes.AddNoteActivity">
+
+    <ImageButton
+        android:layout_marginLeft="5dp"
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_arrow"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Опишите свои впечатления"
+        android:textSize="24sp"
+        android:textColor="#18556D"
+        android:fontFamily="@font/ubuntu_bold"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/subtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Как вы себя чувствуете?"
+        android:textSize="18sp"
+        android:textColor="#18556D"
+        android:layout_marginTop="8dp"/>
+
+    <LinearLayout
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/date_and_description_back">
+
+        <EditText
+            android:id="@+id/dateEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Дата"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="none"
+            android:background="@android:color/transparent"/>
+
+        <ImageView
+            android:id="@+id/calendarIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calendar_ic"
+            android:contentDescription="Календарь"/>
+    </LinearLayout>
+
+    <EditText
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/descriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/date_and_description_back"
+        android:gravity="top"
+        android:hint="Ваши впечатления"
+        android:inputType="textMultiLine"
+        android:minLines="4"
+        android:maxLines="10"
+        android:padding="12dp" />
+
+    <Button
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/addNoteButton"
+        android:layout_width="157dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:text="Добавить заметку"
+        android:textColor="#fff"
+        android:background="@drawable/add_note_button_background_blue"/>
+
+
+</LinearLayout>
