@@ -1,13 +1,13 @@
 package com.example.MAU;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.MAU.Articles.ArticlesFragment;
 import com.example.MAU.Notes.ProfileFragment;
+import com.example.MAU.Player.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
             String fragmentName = getIntent().getStringExtra("fragment");
             if (fragmentName.equals("articles")) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ArticlesFragment()).commit();
+            } else if (fragmentName.equals("songs")) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             }
         } else {
 

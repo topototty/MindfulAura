@@ -175,7 +175,7 @@
         android:textAllCaps="false"
         android:text="Добавить статью"
         android:textColor="#fff"
-        android:background="@drawable/add_note_button_background_blue"/>
+        android:background="@drawable/add_note_button_background"/>
 
 
 </LinearLayout>

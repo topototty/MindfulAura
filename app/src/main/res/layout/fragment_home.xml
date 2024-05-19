@@ -1,50 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".Player.HomeFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="40dp"
-        android:gravity="start">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Добро пожаловать, "
-            android:textColor="#18556D"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textSize="30dp"/>
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="40dp"
+            android:gravity="start"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
-        <TextView
-            android:id="@+id/loginTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textColor="#18556D"
-            android:fontFamily="@font/ubuntu_bold"
-            android:textSize="30dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="Добро пожаловать, "
+                android:textColor="#18556D"
+                android:textSize="30dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntu_regular"
-            android:paddingVertical="10dp"
-            android:text="Выберите трек для сопровождения"
-            android:textColor="#0E3341"
-            android:textSize="17dp"/>
+            <TextView
+                android:id="@+id/loginTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="Login"
+                android:textColor="#18556D"
+                android:textSize="30dp" />
 
-        <View
-            android:layout_width="270dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:background="#D9D9D9" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_regular"
+                android:paddingVertical="10dp"
+                android:text="Выберите трек для сопровождения"
+                android:textColor="#0E3341"
+                android:textSize="17dp" />
+
+            <View
+                android:layout_width="270dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="#D9D9D9" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="32dp"
+            android:layout_height="28dp"
+            android:layout_marginBottom="420dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSongs"
+            android:layout_width="370dp"
+            android:layout_height="0dp"
+            android:layout_gravity="top"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginTop="20dp"
+            />
+
+        <ImageButton
+            android:id="@+id/addSongButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/add_note_button_background"
+            android:src="@drawable/add_note_ic"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerViewSongs" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </FrameLayout>

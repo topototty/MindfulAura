@@ -91,7 +91,7 @@
         android:textAllCaps="false"
         android:text="Изменить заметку"
         android:textColor="#fff"
-        android:background="@drawable/add_note_button_background_blue"/>
+        android:background="@drawable/add_note_button_background"/>
 
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.MAU;
+package com.example.MAU.Notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +13,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.example.MAU.MainActivity;
+import com.example.MAU.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

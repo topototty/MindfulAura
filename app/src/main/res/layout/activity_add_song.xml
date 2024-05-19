@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F4F4F4"
+    tools:context=".Articles.AddArticleActivity">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_arrow"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Загрузка мелодий"
+        android:textSize="24sp"
+        android:textColor="#18556D"
+        android:fontFamily="@font/ubuntu_bold" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/subtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выберите файл с устройства в формате .mp3/.aac/.wav/.ogg"
+        android:textSize="18sp"
+        android:textColor="#18556D"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/buttonChooseFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Нажмите чтобы выбрать файл"
+        android:textSize="18dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:background="@drawable/edit_text_back"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:padding="15dp"
+        android:layout_marginBottom="10dp"
+        android:drawableEnd="@drawable/audio_file_ic"
+        android:drawablePadding="8dp"/>
+
+    <EditText
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/date_and_description_back"
+        android:hint="Название мелодии"
+        android:inputType="none"
+        android:maxLines="1"
+        android:padding="15dp"/>
+
+    <EditText
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/descriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/date_and_description_back"
+        android:gravity="top"
+        android:hint="Описание"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:padding="15dp"/>
+
+
+    <EditText
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/photoUrlEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/date_and_description_back"
+        android:gravity="top"
+        android:hint="URL картинки"
+        android:inputType="textMultiLine"
+        android:maxLines="1"
+        android:padding="15dp"/>
+
+    <ProgressBar
+        android:id="@+id/uploadProgressBar"
+        android:layout_marginHorizontal="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
+
+    <Button
+        android:layout_marginHorizontal="10dp"
+        android:id="@+id/addSongButton"
+        android:layout_width="157dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="false"
+        android:text="Добавить мелодию"
+        android:textColor="#fff"
+        android:background="@drawable/add_note_button_background"/>
+
+</LinearLayout>

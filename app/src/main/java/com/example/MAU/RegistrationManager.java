@@ -90,7 +90,7 @@ public class RegistrationManager extends AppCompatActivity {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(displayName)
-                                .build(); // Удаляем установку фото
+                                .build();
 
                         user.updateProfile(profileUpdates)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -103,7 +103,7 @@ public class RegistrationManager extends AppCompatActivity {
                                                         public void onSuccess(DocumentReference documentReference) {
                                                             progressBar.setVisibility(View.GONE);
                                                             Toast.makeText(RegistrationManager.this, "Пользователь " + user.getEmail() + " зарегистрирован!", Toast.LENGTH_SHORT).show();
-                                                            Intent intent = new Intent(getApplicationContext(), LoginManager.class);
+                                                            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                                                             startActivity(intent);
                                                             finish();
                                                         }
