@@ -160,24 +160,9 @@ public class SettingsFragment extends Fragment {
                 boolean notificationsEnabled = areNotificationsEnabled(getContext());
                 if (notificationsEnabled) {
                     if (isChecked) {
-                        NotificationSubscriptionManager.subscribeToNotifications();
-                        FirebaseMessaging.getInstance().getToken()
-                                .addOnCompleteListener(new OnCompleteListener<String>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<String> task) {
-                                        if (!task.isSuccessful()) {
-                                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                                            return;
-                                        }
-
-                                        String token = task.getResult();
-                                        String msg = getString(R.string.msg_token_fmt, token);
-                                        Log.d(TAG, msg);
-                                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                        NotificationSubscriptionManager.subscribeToNotifications(getContext());
                     } else {
-                        NotificationSubscriptionManager.unsubscribeFromNotifications();
+                        NotificationSubscriptionManager.unsubscribeFromNotifications(getContext());
                     }
                 } else {
                     noticeSwitch.setChecked(false);
