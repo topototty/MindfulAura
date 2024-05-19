@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Player.PlayerActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/songImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/feduk_2022"
+            android:scaleType="centerCrop"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B0000000" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/songTitle"
+                android:layout_width="300dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="220dp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="Song title"
+                android:textColor="#fff"
+                android:textSize="35dp"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/songDescription"
+                android:layout_width="300dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Song description"
+                android:fontFamily="@font/ubuntu_light"
+                android:textSize="16dp"
+                android:layout_marginBottom="40dp"/>
+
+            <include layout="@layout/circle_progress_with_text" />
+
+            <ImageButton
+                android:id="@+id/playPauseButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/play_button_for_player_ic" />
+
+            <TextView
+                android:id="@+id/finishNowLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginTop="20dp"
+                android:text="Завершить сейчас"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

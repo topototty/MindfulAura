@@ -70,13 +70,16 @@ public class HomeFragment extends Fragment {
             loginTextView.setText(user.getDisplayName());
         }
 
-        addSongButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), AddSongActivity.class));
-                getActivity().finish();
-            }
-        });
+        if (user.getDisplayName().equals("Administrator")){
+            addSongButton.setVisibility(View.VISIBLE);
+            addSongButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getActivity(), AddSongActivity.class));
+                    getActivity().finish();
+                }
+            });
+        } else addSongButton.setVisibility(View.GONE);
 
         return view;
     }

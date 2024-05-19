@@ -18,38 +18,49 @@
             android:src="@drawable/header_profile_settings"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-2dp"/>
+            tools:layout_editor_absoluteY="-3dp" />
 
-        <TextView
-            android:id="@+id/userLogin"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textColor="#fff"
-            android:textSize="35dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.133"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.371" />
-
-        <TextView
-            android:id="@+id/userEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="220dp"
-            android:text="Email"
-            android:textColor="#fff"
-            android:textSize="18dp"
+            android:layout_height="80dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/userLogin"
-            app:layout_constraintTop_toBottomOf="@+id/userLogin"
-            app:layout_constraintVertical_bias="0.071"
-            android:fontFamily="@font/ubuntu_light"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingHorizontal="10dp">
 
+            <TextView
+                android:id="@+id/userLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:text="Login"
+                android:textColor="#fff"
+                android:textSize="35dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.371" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_light"
+                android:paddingHorizontal="20dp"
+                android:text="Email"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/userLogin"
+                app:layout_constraintTop_toBottomOf="@+id/userLogin"
+                app:layout_constraintVertical_bias="0.071" />
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -57,81 +68,19 @@
             android:layout_height="80dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="24"
+                android:text="Ваш личный дневник медитаций. Запишите свои мысли, наблюдения и впечатления."
                 android:textColor="#18556D"
-                android:textSize="41dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.172"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.45"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="Пройдено медитаций"
-                android:textColor="#949494"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/view"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.514" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="0.5dp"
-                android:layout_height="45dp"
-                android:background="#D9D9D9"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="120dp"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="315"
-                android:textColor="#18556D"
-                android:textSize="41dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/view"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.47"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="Минут затрачено"
-                android:textColor="#949494"
-                android:textSize="14dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.189"
-                app:layout_constraintStart_toEndOf="@+id/text2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.514" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -157,7 +106,6 @@
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
             app:layout_constraintVertical_bias="0.0" />

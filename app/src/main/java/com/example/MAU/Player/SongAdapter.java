@@ -1,6 +1,7 @@
 package com.example.MAU.Player;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,14 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
         Picasso.get().load(currentSong.getImage_url()).into(holder.imageViewPhoto);
 
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, PlayerActivity.class);
+            intent.putExtra("title", currentSong.getTitle());
+            intent.putExtra("description", currentSong.getDescription());
+            intent.putExtra("image_url", currentSong.getImage_url());
+            intent.putExtra("songUrl", currentSong.getSong_url());
+            context.startActivity(intent);
+        });
     }
 
     @Override
