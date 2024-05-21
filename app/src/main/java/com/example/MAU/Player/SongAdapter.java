@@ -6,22 +6,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.MAU.R;
-import com.example.MAU.models.Articles;
 import com.example.MAU.models.Song;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
 
     private Context context;
     private List<Song> songList;
+    private OnItemLongClickListener onItemLongClickListener;
+
+    // Interface for long-click events
+    public interface OnItemLongClickListener {
+        void onItemLongClick(View view, int position);
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
+        this.onItemLongClickListener = listener;
+    }
 
     public SongAdapter(Context context, List<Song> songList) {
         this.context = context;
@@ -37,7 +50,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
-
         Song currentSong = songList.get(position);
 
         holder.titleTextView.setText(currentSong.getTitle());
@@ -53,6 +65,17 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             intent.putExtra("songUrl", currentSong.getSong_url());
             context.startActivity(intent);
         });
+
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(Objects.equals(currentUser.getDisplayName(), "Administrator")){
+            holder.itemView.setOnLongClickListener(v -> {
+                if (onItemLongClickListener != null) {
+                    onItemLongClickListener.onItemLongClick(holder.itemView, position);
+                }
+                return true;
+            });
+        }
     }
 
     @Override
@@ -65,8 +88,11 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
         notifyDataSetChanged();
     }
 
-    public class SongViewHolder extends RecyclerView.ViewHolder {
+    public List<Song> getSongs() {
+        return songList;
+    }
 
+    public static class SongViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView, descriptionTextView;
         ImageView imageViewPhoto;
 

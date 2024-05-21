@@ -1,7 +1,15 @@
-package com.example.MAU.Player;
-
+package com.example.MAU.Player;// HomeFragment.java
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,25 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.MAU.Articles.ArticleAdapter;
-import com.example.MAU.MainActivity;
-import com.example.MAU.Notes.AddNoteActivity;
 import com.example.MAU.R;
-import com.example.MAU.models.Articles;
 import com.example.MAU.models.Song;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +37,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerViewSongs;
     private SongAdapter songAdapter;
     private ProgressBar progressBar;
-
-    ImageButton addSongButton;
+    private ImageButton addSongButton;
 
     @Nullable
     @Override
@@ -63,6 +59,8 @@ public class HomeFragment extends Fragment {
 
         loadSongs();
 
+        songAdapter.setOnItemLongClickListener(this::showPopupMenu);
+
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         if (user != null) {
@@ -72,16 +70,47 @@ public class HomeFragment extends Fragment {
 
         if (user.getDisplayName().equals("Administrator")){
             addSongButton.setVisibility(View.VISIBLE);
-            addSongButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(getActivity(), AddSongActivity.class));
-                    getActivity().finish();
-                }
+            addSongButton.setOnClickListener(v -> {
+                startActivity(new Intent(getActivity(), AddSongActivity.class));
+                getActivity().finish();
             });
-        } else addSongButton.setVisibility(View.GONE);
+        } else {
+            addSongButton.setVisibility(View.GONE);
+        }
 
         return view;
+    }
+
+    private void showPopupMenu(View view, int position) {
+        PopupMenu popupMenu = new PopupMenu(requireContext(), view);
+        popupMenu.inflate(R.menu.context_menu_delete);
+        popupMenu.setGravity(Gravity.RIGHT);
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_delete) {
+                deleteSong(position);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+    private void deleteSong(int position) {
+        Song song = songAdapter.getSongs().get(position);
+
+        StorageReference songRef = storage.getReferenceFromUrl(song.getSong_url());
+        songRef.delete().addOnSuccessListener(aVoid -> {
+            db.collection("songs").document(song.getSong_id())
+                    .delete()
+                    .addOnSuccessListener(aVoid1 -> {
+                        Toast.makeText(getContext(), "Песня удалена", Toast.LENGTH_SHORT).show();
+                        songAdapter.getSongs().remove(position);
+                        songAdapter.notifyItemRemoved(position);
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(getContext(), "Ошибка удаления трека из базы данных", Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> Toast.makeText(getContext(), "Ошибка удаления трека из хранилища", Toast.LENGTH_SHORT).show());
     }
 
     private void loadSongs() {

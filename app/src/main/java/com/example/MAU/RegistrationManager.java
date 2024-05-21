@@ -37,7 +37,7 @@ public class RegistrationManager extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference userRef = db.collection("users");
 
-    private static final Pattern LOGIN_PATTERN = Pattern.compile("^(?=.*[A-Z])[A-Za-z]{6,}$");
+    private static final Pattern LOGIN_PATTERN = Pattern.compile("^(?=.*[A-Z])[A-Za-z]{6,18}$");
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$");
 
     @Override
@@ -78,7 +78,7 @@ public class RegistrationManager extends AppCompatActivity {
                     passwordEditText.setError("Пароль должен быть не менее 8 символов, содержать хотя бы одну цифру и один спецсимвол");
                     progressBar.setVisibility(View.GONE);
                 } else if (!LOGIN_PATTERN.matcher(login).matches()) {
-                    loginEditText.setError("Логин должен быть не менее 6 символов, содержать только латинские буквы и хотя бы одну заглавную букву");
+                    loginEditText.setError("Логин должен быть не менее 6 и не более 18 символов, содержать только латинские буквы и хотя бы одну заглавную букву");
                     progressBar.setVisibility(View.GONE);
                 } else {
                     registrationUser(email, password, login);
