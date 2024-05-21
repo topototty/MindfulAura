@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.MAU.R;
 import com.example.MAU.models.Note;
@@ -77,6 +78,11 @@ public class EditNoteActivity extends AppCompatActivity {
                 if (currentNote != null) {
                     String updatedDescription = editTextDescription.getText().toString();
                     currentNote.setDescription(updatedDescription);
+
+                    if (updatedDescription.isEmpty()) {
+                        editTextDescription.setError("Заполните это поле");
+                        return;
+                    }
 
                     String updatedData = editTextDate.getText().toString();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());

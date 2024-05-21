@@ -49,9 +49,15 @@ public class AddArticleActivity extends AppCompatActivity {
                 if (tag != null) {
                     int start = articleTextEditText.getSelectionStart();
                     int end = articleTextEditText.getSelectionEnd();
-                    String selectedText = articleTextEditText.getText().toString().substring(start, end);
-                    String htmlText = String.format("<%s>%s</%s>", tag, selectedText, tag);
-                    appendFormattedText(htmlText);
+
+                    if (start == end){
+                        Toast.makeText(AddArticleActivity.this, "Выделите текст", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String selectedText = articleTextEditText.getText().toString().substring(start, end);
+                        String htmlText = String.format("<%s>%s</%s>", tag, selectedText, tag);
+                        appendFormattedText(htmlText);
+                    }
+
                 }
             }
         };

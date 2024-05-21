@@ -157,8 +157,6 @@ public class PlayerActivity extends AppCompatActivity {
         }).start();
     }
 
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

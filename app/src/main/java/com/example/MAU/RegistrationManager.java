@@ -26,6 +26,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.regex.Pattern;
+
 public class RegistrationManager extends AppCompatActivity {
     EditText emailEditText, passwordEditText, loginEditText;
     Button authButton, chooseImageButton;
@@ -34,6 +36,9 @@ public class RegistrationManager extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference userRef = db.collection("users");
+
+    private static final Pattern LOGIN_PATTERN = Pattern.compile("^(?=.*[A-Z])[A-Za-z]{6,}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +71,14 @@ public class RegistrationManager extends AppCompatActivity {
                 String password = passwordEditText.getText().toString().trim();
                 String login = loginEditText.getText().toString().trim();
 
-                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    emailEditText.setError("Неверный формат Email");
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    emailEditText.setError("Неверный формат адреса электронной почты");
                     progressBar.setVisibility(View.GONE);
-                } else if (password.length() < 6){
-                    passwordEditText.setError("Пароль должен быть больше 6 символов");
+                } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
+                    passwordEditText.setError("Пароль должен быть не менее 8 символов, содержать хотя бы одну цифру и один спецсимвол");
                     progressBar.setVisibility(View.GONE);
-                } else if (login.length() < 6){
-                    loginEditText.setError("Логин должен быть больше 6 символов");
+                } else if (!LOGIN_PATTERN.matcher(login).matches()) {
+                    loginEditText.setError("Логин должен быть не менее 6 символов, содержать только латинские буквы и хотя бы одну заглавную букву");
                     progressBar.setVisibility(View.GONE);
                 } else {
                     registrationUser(email, password, login);
@@ -117,7 +122,7 @@ public class RegistrationManager extends AppCompatActivity {
                                                         }
                                                     });
                                         } else {
-                                            Toast.makeText(RegistrationManager.this, "Failed to set display name", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegistrationManager.this, "Ошибка установки имени пользователя", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

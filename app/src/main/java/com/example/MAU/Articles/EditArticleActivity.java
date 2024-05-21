@@ -51,9 +51,15 @@ public class EditArticleActivity extends AppCompatActivity {
                 if (tag != null) {
                     int start = articleTextEditText.getSelectionStart();
                     int end = articleTextEditText.getSelectionEnd();
-                    String selectedText = articleTextEditText.getText().toString().substring(start, end);
-                    String htmlText = String.format("<%s>%s</%s>", tag, selectedText, tag);
-                    appendFormattedText(htmlText);
+
+                    if (start == end){
+                        Toast.makeText(EditArticleActivity.this, "Выделите текст", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String selectedText = articleTextEditText.getText().toString().substring(start, end);
+                        String htmlText = String.format("<%s>%s</%s>", tag, selectedText, tag);
+                        appendFormattedText(htmlText);
+                    }
+
                 }
             }
         };
@@ -85,20 +91,28 @@ public class EditArticleActivity extends AppCompatActivity {
             }
         });
 
-        // Обработка нажатия на кнопку "Изменить статью"
         editArticleButton.setOnClickListener(v -> {
-            String editedTitle = titleEditText.getText().toString();
-            String editedDescription = descriptionEditText.getText().toString();
-            String editedArticleText = articleTextEditText.getText().toString();
-            String editedPhotoURL = photoURLEditText.getText().toString();
+            String editedTitle = titleEditText.getText().toString().trim();
+            String editedDescription = descriptionEditText.getText().toString().trim();
+            String editedArticleText = articleTextEditText.getText().toString().trim();
+            String editedPhotoURL = photoURLEditText.getText().toString().trim();
 
-            if (currentArticle != null) {
-                currentArticle.setTitle(editedTitle);
-                currentArticle.setDescription(editedDescription);
-                currentArticle.setArticleText(editedArticleText);
-                currentArticle.setPhoto_URL(editedPhotoURL);
+            if (!editedTitle.isEmpty() && !editedDescription.isEmpty() && !editedArticleText.isEmpty()){
+                if (currentArticle != null) {
+                    if (editedPhotoURL.isEmpty()){
+                        editedPhotoURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9PJscu_d_qoxDIWQnCEU-KF-6WpzI0hbMS-TmuUeaWw&s";
+                    }
 
-                articleManager.updateArticle(currentArticle);
+                    currentArticle.setTitle(editedTitle);
+                    currentArticle.setDescription(editedDescription);
+                    currentArticle.setArticleText(editedArticleText);
+                    currentArticle.setPhoto_URL(editedPhotoURL);
+
+                    articleManager.updateArticle(currentArticle);
+                }
+            } else {
+                Toast.makeText(EditArticleActivity.this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             finish();

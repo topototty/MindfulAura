@@ -13,7 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="272dp"
-        android:src="@drawable/_89b7034_669a_4a06_8b83_8c0566db7010"
+        android:src="@drawable/welcome_activity_ic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

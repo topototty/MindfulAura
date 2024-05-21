@@ -78,15 +78,7 @@ public class LoginManager extends AppCompatActivity {
                 String email = emailEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
-                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    emailEditText.setError("Неверный формат Email");
-                    progressBar.setVisibility(View.GONE);
-                } else if (password.length() < 6) {
-                    passwordEditText.setError("Пароль должен быть больше 6 символов");
-                    progressBar.setVisibility(View.GONE);
-                } else {
-                    loginUser(email, password);
-                }
+                loginUser(email, password);
             }
         });
     }
@@ -102,7 +94,7 @@ public class LoginManager extends AppCompatActivity {
                         finish();
                         progressBar.setVisibility(View.GONE);
                     } else {
-                        emailEditText.setError("Неверный логин или пароль");
+                        emailEditText.setError("Неверный адрес электронной почты или пароль");
                         progressBar.setVisibility(View.GONE);
                     }
                 }

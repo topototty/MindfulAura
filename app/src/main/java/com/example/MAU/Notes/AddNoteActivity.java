@@ -74,12 +74,18 @@ public class AddNoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String description = descriptionEditText.getText().toString();
                 Date date = calendar.getTime();
-                Note note = new Note(date, description, auth.getCurrentUser().getUid());
 
-                noteManager.addNote(note);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
+                if(description.isEmpty()){
+                    descriptionEditText.setError("Заполните это поле");
+                }
+                else {
+                    Note note = new Note(date, description, auth.getCurrentUser().getUid());
+
+                    noteManager.addNote(note);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 

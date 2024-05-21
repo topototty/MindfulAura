@@ -105,7 +105,21 @@ public class AddSongActivity extends AppCompatActivity {
     }
 
     private void uploadFile() {
-        if (audioUri != null) {
+        String title = titleEditText.getText().toString().trim();
+        String description = descriptionEditText.getText().toString().trim();
+        String imageUrl = photoUrlEditText.getText().toString().trim();
+
+        if (title.isEmpty() || description.isEmpty()) {
+            Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (audioUri == null) {
+            Toast.makeText(this, "Пожалуйста, выберите файл", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        checkIfTitleExists(title, () -> {
             uploadProgressBar.setVisibility(ProgressBar.VISIBLE);
             String fileName = UUID.randomUUID().toString();
             StorageReference storageReference = storage.getReference().child("songs/" + fileName);
@@ -114,28 +128,16 @@ public class AddSongActivity extends AppCompatActivity {
                     .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
                         uploadProgressBar.setVisibility(ProgressBar.GONE);
                         String songUrl = uri.toString();
-                        checkIfSongExists(songUrl);
+                        saveSongToFirestore(title, description, imageUrl, songUrl);
                     }))
                     .addOnFailureListener(e -> {
                         uploadProgressBar.setVisibility(ProgressBar.GONE);
                         Toast.makeText(AddSongActivity.this, "Ошибка загрузки файла", Toast.LENGTH_SHORT).show();
                     });
-        } else {
-            Toast.makeText(this, "Пожалуйста, выберите файл", Toast.LENGTH_SHORT).show();
-        }
+        });
     }
 
-    private void checkIfSongExists(String songUrl) {
-        String title = titleEditText.getText().toString();
-        if (title.isEmpty()) {
-            Toast.makeText(this, "Пожалуйста, введите название мелодии", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        checkIfTitleExists(title, songUrl);
-    }
-
-    private void checkIfTitleExists(String title, String songUrl) {
+    private void checkIfTitleExists(String title, Runnable onSuccess) {
         Query titleQuery = firestore.collection("songs")
                 .whereEqualTo("title", title)
                 .limit(1);
@@ -143,41 +145,31 @@ public class AddSongActivity extends AppCompatActivity {
         titleQuery.get().addOnSuccessListener(queryDocumentSnapshots -> {
             if (!queryDocumentSnapshots.isEmpty()) {
                 Toast.makeText(AddSongActivity.this, "Мелодия с таким названием уже существует", Toast.LENGTH_SHORT).show();
-                return;
             } else {
-                saveSongToFirestore(songUrl);
+                onSuccess.run();
             }
         }).addOnFailureListener(e -> {
             Toast.makeText(AddSongActivity.this, "Ошибка проверки существования названия: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
     }
-
-    private void saveSongToFirestore(String songUrl) {
-        String title = titleEditText.getText().toString();
-        String description = descriptionEditText.getText().toString();
-        String imageUrl = photoUrlEditText.getText().toString();
-
+    private void saveSongToFirestore(String title, String description, String imageUrl, String songUrl) {
         if (imageUrl.isEmpty()) {
             imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9PJscu_d_qoxDIWQnCEU-KF-6WpzI0hbMS-TmuUeaWw&s";
         }
 
-        if (!title.isEmpty() && !description.isEmpty() && !imageUrl.isEmpty() && songUrl != null) {
-            Song song = new Song(title, description, imageUrl, songUrl);
+        Song song = new Song(title, description, imageUrl, songUrl);
 
-            firestore.collection("songs").add(song)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(AddSongActivity.this, "Мелодия успешно добавлена", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
-                        } else {
-                            Toast.makeText(AddSongActivity.this, "Ошибка добавления мелодии", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(e -> Toast.makeText(AddSongActivity.this, "Ошибка: " + e.getMessage(), Toast.LENGTH_SHORT).show());
-        } else {
-            Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();
-        }
+        firestore.collection("songs").add(song)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(AddSongActivity.this, "Мелодия успешно добавлена", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(AddSongActivity.this, "Ошибка добавления мелодии", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> Toast.makeText(AddSongActivity.this, "Ошибка: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
     @Override

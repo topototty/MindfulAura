@@ -69,6 +69,8 @@
         android:padding="12dp"
         android:textSize="16dp"
         android:maxLines="1"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +101,8 @@
         android:hint="Введите email"
         android:padding="12dp"
         android:textSize="16dp"
+        android:inputType="text"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEditText" />
@@ -116,6 +120,7 @@
         android:inputType="textPassword"
         android:padding="12dp"
         android:textSize="16dp"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditText" />

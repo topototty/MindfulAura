@@ -302,6 +302,11 @@ public class SettingsFragment extends Fragment {
     }
 
     private void updateUsername(final String newUsername) {
+        if (!validateUsername(newUsername)) {
+            Toast.makeText(getContext(), "Логин должен быть больше 6 символов, только латинские буквы и содержать хотя бы одну заглавную букву", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -371,7 +376,11 @@ public class SettingsFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 String newPassword = input.getText().toString().trim();
                 if (!newPassword.isEmpty()) {
-                    updatePassword(newPassword);
+                    if (validatePassword(newPassword)) {
+                        updatePassword(newPassword);
+                    } else {
+                        Toast.makeText(getContext(), "Пароль должен быть не менее 8 символов, содержать хотя бы одну цифру и специальный символ", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -393,5 +402,13 @@ public class SettingsFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private boolean validateUsername(String username) {
+        return username.length() > 6 && username.matches(".*[A-Z].*") && username.matches("[a-zA-Z]+");
+    }
+
+    private boolean validatePassword(String password) {
+        return password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*[!@#$%^&*+=?-].*");
     }
 }
