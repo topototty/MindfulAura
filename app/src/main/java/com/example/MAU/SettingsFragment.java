@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,16 +158,17 @@ public class SettingsFragment extends Fragment {
         noticeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                boolean notificationsEnabled = areNotificationsEnabled(getContext());
-                if (notificationsEnabled) {
-                    if (isChecked) {
-                        NotificationSubscriptionManager.subscribeToNotifications(getContext());
-                    } else {
-                        NotificationSubscriptionManager.unsubscribeFromNotifications(getContext());
-                    }
+                if (!isChecked) {
+                    NotificationSubscriptionManager.unsubscribeFromNotifications(getContext());
                 } else {
-                    noticeSwitch.setChecked(false);
-                    Toast.makeText(getContext(), "Включите уведомления в настройках вашего устройства", Toast.LENGTH_SHORT).show();
+                    boolean notificationsEnabled = areNotificationsEnabled(getContext());
+                    if (!notificationsEnabled) {
+                        openNotificationSettings();
+                        noticeSwitch.setChecked(false);
+                        return;
+                    } else {
+                        NotificationSubscriptionManager.subscribeToNotifications(getContext());
+                    }
                 }
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -174,8 +176,13 @@ public class SettingsFragment extends Fragment {
                 editor.apply();
             }
         });
-
         return view;
+    }
+    private void openNotificationSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE, getContext().getPackageName());
+        startActivity(intent);
     }
 
     private boolean areNotificationsEnabled(Context context) {

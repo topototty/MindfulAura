@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.MAU.MainActivity;
 import com.example.MAU.R;
 import com.example.MAU.models.Note;
 
@@ -27,6 +29,7 @@ public class EditNoteActivity extends AppCompatActivity {
     private Note currentNote;
     private Calendar calendar;
     private DatePickerDialog.OnDateSetListener dateSetListener;
+    ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class EditNoteActivity extends AppCompatActivity {
         noteManager = new NoteManager();
         editTextDescription = findViewById(R.id.descriptionEditText);
         editTextDate = findViewById(R.id.dateEditText);
+        backButton = findViewById(R.id.backButton);
 
         buttonUpdate = findViewById(R.id.editNoteButton);
 
@@ -97,6 +101,14 @@ public class EditNoteActivity extends AppCompatActivity {
                     noteManager.updateNote(currentNote);
                     finish();
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
         });
     }

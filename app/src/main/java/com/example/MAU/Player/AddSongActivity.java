@@ -119,6 +119,15 @@ public class AddSongActivity extends AppCompatActivity {
             return;
         }
 
+        if (title.length() > 30){
+            titleEditText.setError("Название мелодии должно быть не более 30 символов");
+            return;
+        }
+        if (description.length() > 70){
+            descriptionEditText.setError("Описание мелодии должно быть не более 70 символов");
+            return;
+        }
+
         checkIfTitleExists(title, () -> {
             uploadProgressBar.setVisibility(ProgressBar.VISIBLE);
             String fileName = UUID.randomUUID().toString();

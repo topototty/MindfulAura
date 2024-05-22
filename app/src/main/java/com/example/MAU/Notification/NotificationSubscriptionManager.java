@@ -9,7 +9,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class NotificationSubscriptionManager {
 
-    // This class manages subscription to topics for Firebase Cloud Messaging
 
     public static void subscribeToNotifications(Context context) {
         FirebaseMessaging.getInstance().subscribeToTopic("Meditation")

@@ -102,7 +102,7 @@ public class RegistrationManager extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            User newUser = new User(user.getEmail(), user.getUid(), displayName, null);
+                                            User newUser = new User(user.getEmail(), user.getUid(), displayName);
                                             userRef.add(newUser).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                         @Override
                                                         public void onSuccess(DocumentReference documentReference) {

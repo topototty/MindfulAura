@@ -4,16 +4,14 @@ public class User {
     private String email;
     private String uid;
     private String displayName;
-    private String photo;
 
     public User() {
 
     }
-    public User(String email, String uid, String displayName, String photo) {
+    public User(String email, String uid, String displayName) {
         this.email = email;
         this.uid = uid;
         this.displayName = displayName;
-        this.photo = photo;
     }
 
     public String getEmail() {
@@ -39,10 +37,5 @@ public class User {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
-
-    public String getPhoto() { return photo; }
-
-    public void setPhoto(String photo) { this.photo = photo; }
-
 
 }

@@ -74,7 +74,7 @@
         android:gravity="top"
         android:hint="Описание"
         android:inputType="textMultiLine"
-        android:maxLines="4"
+        android:maxLines="2"
         android:padding="15dp"/>
 
 
@@ -102,7 +102,8 @@
     <Button
         android:layout_marginHorizontal="10dp"
         android:id="@+id/addSongButton"
-        android:layout_width="157dp"
+        android:layout_width="wrap_content"
+        android:paddingHorizontal="20dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:textAllCaps="false"
