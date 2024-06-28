@@ -145,6 +145,24 @@
                     android:text="h3"
                     android:tag="h3"/>
 
+                <ImageButton
+                    android:id="@+id/ulButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/list_button_ic"
+                    android:backgroundTint="#fff"
+                    android:text="ul"
+                    android:tag="ul"/>
+
+                <ImageButton
+                    android:id="@+id/liButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/list_element_button_ic"
+                    android:backgroundTint="#fff"
+                    android:text="li"
+                    android:tag="li"/>
+
             </LinearLayout>
 
         </HorizontalScrollView>

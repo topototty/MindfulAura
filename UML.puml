@@ -1,0 +1,455 @@
+@startuml
+class com.example.MAU.Notes.AddNoteActivity {
+- EditText dateEditText
+- EditText descriptionEditText
+- Button addNoteButton
+- ImageButton backButton
+- NoteManager noteManager
+- Calendar calendar
+- DatePickerDialog.OnDateSetListener dateSetListener
+# void onCreate(Bundle)
+- void updateDateEditText()
++ void onBackPressed()
+}
+
+
+class com.example.MAU.Player.HomeFragment {
+- FirebaseAuth firebaseAuth
+- FirebaseFirestore db
+- FirebaseStorage storage
+- RecyclerView recyclerViewSongs
+- SongAdapter songAdapter
+- ProgressBar progressBar
+- ImageButton addSongButton
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void showPopupMenu(View,int)
+- void deleteSong(int)
+- void loadSongs()
+}
+
+
+class com.example.MAU.models.Song {
+- String song_id
+- String title
+- String description
+- String image_url
+- String song_url
++ String getSong_id()
++ void setSong_id(String)
++ String getTitle()
++ void setTitle(String)
++ String getDescription()
++ void setDescription(String)
++ String getImage_url()
++ void setImage_url(String)
++ String getSong_url()
++ void setSong_url(String)
+}
+
+
+class com.example.MAU.Articles.EditArticleActivity {
+- EditText titleEditText
+- Button editArticleButton
+- ImageButton backButton
+- Articles currentArticle
+- ArticlesManager articleManager
+# void onCreate(Bundle)
+- void appendFormattedText(String)
++ void onBackPressed()
+}
+
+
+class com.example.MAU.Notes.NoteManager {
+- String COLLECTION_NAME
+- FirebaseFirestore db
+- CollectionReference notesCollection
++ void getNotesByUserID(String,OnDataRetrievedListener)
++ void addNote(Note)
++ void updateNote(Note)
++ void deleteNote(String)
+}
+
+
+interface com.example.MAU.Notes.NoteManager$OnDataRetrievedListener {
+~ void onNotesRetrieved(List<Note>)
+~ void onError(String)
+}
+
+interface com.example.MAU.Notes.NoteManager$OnNoteClickListener {
+~ void onNoteClick(Note)
+}
+
+class com.example.MAU.Articles.ArticleAdapter {
+- Context context
+- List<Articles> articles
+- OnArticleClickListener mListener
++ void setOnArticleClickListener(OnArticleClickListener)
++ List<Articles> getNotes()
++ ArticleViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ArticleViewHolder,int)
++ int getItemCount()
++ void setArticles(List<Articles>)
++ List<Articles> getArticles()
+}
+
+
+interface com.example.MAU.Articles.ArticleAdapter$OnArticleClickListener {
+~ void onArticleClick(int)
+~ void onArticleLongClick(int)
+}
+
+class com.example.MAU.Articles.ArticleAdapter$ArticleViewHolder {
++ ImageView imageViewPhoto
+~ TextView textViewTitle
+~ TextView textViewDescription
+}
+
+class com.example.MAU.Login {
+# void onCreate(Bundle)
+}
+
+class com.example.MAU.MainActivity {
+~ BottomNavigationView bottomNavigationView
+# void onCreate(Bundle)
++ void SetFragment(Fragment)
+}
+
+
+class com.example.MAU.models.User {
+- String email
+- String uid
+- String displayName
++ String getEmail()
++ void setEmail(String)
++ String getUid()
++ void setUid(String)
++ String getDisplayName()
++ void setDisplayName(String)
+}
+
+
+class com.example.MAU.Player.AddSongActivity {
+- {static} int PICK_AUDIO_REQUEST
+- {static} List<String> ALLOWED_MIME_TYPES
+- Button buttonChooseFile
+- ImageButton backButton
+- EditText titleEditText
+- ProgressBar uploadProgressBar
+- Uri audioUri
+- FirebaseStorage storage
+- FirebaseFirestore firestore
+# void onCreate(Bundle)
+- void openFileChooser()
+# void onActivityResult(int,int,Intent)
+- boolean isAllowedFileType(Uri)
+- String getFileName(Uri)
+- void uploadFile()
+- void checkIfTitleExists(String,Runnable)
+- void saveSongToFirestore(String,String,String,String)
++ void onBackPressed()
+}
+
+
+class com.example.MAU.ExampleInstrumentedTest {
++ void useAppContext()
+}
+
+class com.example.MAU.ExampleUnitTest {
++ void addition_isCorrect()
+}
+
+class com.example.MAU.Notes.ProfileFragment {
+- NoteManager noteManager
+- FirebaseAuth firebaseAuth
+- FirebaseFirestore db
+- RecyclerView recyclerViewNotes
+- NoteAdapter noteAdapter
+- ProgressBar progressBar
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onCreateContextMenu(ContextMenu,View,ContextMenu.ContextMenuInfo)
++ boolean onContextItemSelected(MenuItem)
++ void onResume()
+- void loadNotes(String)
+}
+
+
+class com.example.MAU.Player.PlayerActivity {
+- MediaPlayer mediaPlayer
+- TextView progressTextView
+- ProgressBar circleProgressBar
+- ImageButton playPauseButton
+- ImageView songImageView
+- boolean isPlaying
+# void onCreate(Bundle)
+- void showFinishDialog()
+- void startProgressUpdate()
+# void onDestroy()
++ void onBackPressed()
+}
+
+
+class com.example.MAU.SettingsFragment {
+- {static} String SWITCH_STATE_KEY
+- {static} String TAG
+- FirebaseAuth firebaseAuth
+- FirebaseFirestore db
+- LinearLayout deleteAccountLayout
+- View deleteAccountSeparator
+- ImageButton logoutButton
+- SharedPreferences sharedPreferences
+- Switch noticeSwitch
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void openNotificationSettings()
+- boolean areNotificationsEnabled(Context)
+- void deleteUserAndData(FirebaseUser)
+- void deleteUserDataFromFirestore(String)
+- void deleteUserFb(DocumentSnapshot)
+- void deleteNotesByUserId(String)
+- void delAllNotes(DocumentSnapshot)
+- void showChangeUsernameDialog()
+- void updateUsername(String)
+- void updateUsernameInFirestore(String,String)
+- void showChangePasswordDialog()
+- void updatePassword(String)
+- boolean validateUsername(String)
+- boolean validatePassword(String)
+}
+
+
+class com.example.MAU.Notes.EditNoteActivity {
+- NoteManager noteManager
+- EditText editTextDescription
+- Button buttonUpdate
+- Note currentNote
+- Calendar calendar
+- DatePickerDialog.OnDateSetListener dateSetListener
+~ ImageButton backButton
+# void onCreate(Bundle)
+- void updateDateEditText()
+}
+
+
+class com.example.MAU.Player.SongAdapter {
+- Context context
+- List<Song> songList
+- OnItemLongClickListener onItemLongClickListener
++ void setOnItemLongClickListener(OnItemLongClickListener)
++ SongViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(SongViewHolder,int)
++ int getItemCount()
++ void setSongs(List<Song>)
++ List<Song> getSongs()
+}
+
+
+interface com.example.MAU.Player.SongAdapter$OnItemLongClickListener {
+~ void onItemLongClick(View,int)
+}
+
+class com.example.MAU.Player.SongAdapter$SongViewHolder {
+~ TextView titleTextView
+~ ImageView imageViewPhoto
+}
+
+class com.example.MAU.RegistrationManager {
+~ EditText emailEditText
+~ Button authButton
+~ ProgressBar progressBar
+~ TextView clickToLogin
+~ FirebaseAuth firebaseAuth
+~ FirebaseFirestore db
+~ CollectionReference userRef
+- {static} Pattern LOGIN_PATTERN
+- {static} Pattern PASSWORD_PATTERN
+# void onCreate(Bundle)
+- void registrationUser(String,String,String)
+}
+
+
+class com.example.MAU.Notification.PushService {
+- {static} String TAG
++ void onNewToken(String)
++ void onMessageReceived(RemoteMessage)
+- void sendNotification(String,String)
+}
+
+
+class com.example.MAU.Notification.NotificationSubscriptionManager {
++ {static} void subscribeToNotifications(Context)
++ {static} void unsubscribeFromNotifications(Context)
+}
+
+class com.example.MAU.WelcomeActivity {
+~ Button beginButton
+# void onCreate(Bundle)
+}
+
+
+class com.example.MAU.Articles.AddArticleActivity {
+- EditText titleEditText
+- Button addArticleButton
+- ImageButton backButton
+- ArticlesManager articlesManager
+# void onCreate(Bundle)
+- void appendFormattedText(String)
++ void onBackPressed()
+}
+
+
+class com.example.MAU.models.Note {
+- String note_id
+- Date date
+- String description
+- String user_id
++ String getNote_id()
++ void setNote_id(String)
++ void setDate(Date)
++ String getDescription()
++ void setDescription(String)
++ String getUser_id()
++ void setUser_id(String)
++ Date getDate()
+}
+
+
+class com.example.MAU.Articles.ArticlesFragment {
+~ ImageButton addArticleButton
+- FirebaseFirestore db
+- RecyclerView recyclerViewArticles
+- ArticleAdapter articleAdapter
+- ProgressBar progressBarArticles
+- ArticlesManager articleManager
++ void onViewCreated(View,Bundle)
++ void onArticleClick(int)
++ void onArticleLongClick(int)
+- void showPopupMenu(View,int)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void loadArticles()
++ void onResume()
+}
+
+
+class com.example.MAU.models.Articles {
+- String article_id
+- String title
+- String description
+- String articleText
+- String photo_URL
++ String getArticleText()
++ void setArticleText(String)
++ String getArticle_id()
++ void setArticle_id(String)
++ String getTitle()
++ void setTitle(String)
++ String getDescription()
++ void setDescription(String)
++ String getPhoto_URL()
++ void setPhoto_URL(String)
+}
+
+
+class com.example.MAU.Articles.ArticleDetailsActivity {
+# void onCreate(Bundle)
+}
+
+class com.example.MAU.Articles.ArticlesManager {
+- String COLLECTION_NAME
+- FirebaseFirestore db
+- CollectionReference articlesCollection
++ void getAllArticles(OnDataRetrievedListener)
++ void addArticle(Articles)
++ void updateArticle(Articles)
++ void deleteArticle(String)
++ void getCurrentArticle(String,OnArticleRetrievedListener)
+}
+
+
+interface com.example.MAU.Articles.ArticlesManager$OnDataRetrievedListener {
+~ void onArticlesRetrieved(List<Articles>)
+~ void onError(String)
+}
+
+interface com.example.MAU.Articles.ArticlesManager$OnArticleRetrievedListener {
+~ void onArticleRetrieved(Articles)
+~ void onError(String)
+}
+
+class com.example.MAU.Notes.NoteAdapter {
+- Context context
+- List<Note> notes
+- int selectedPosition
++ List<Note> getNotes()
++ NoteViewHolder onCreateViewHolder(ViewGroup,int)
++ int getSelectedPosition()
++ void onBindViewHolder(NoteViewHolder,int)
++ int getItemCount()
++ void setNotes(List<Note>)
+}
+
+
+class com.example.MAU.Notes.NoteAdapter$NoteViewHolder {
+~ TextView textViewDate
+~ TextView textViewDescription
++ void onCreateContextMenu(ContextMenu,View,ContextMenu.ContextMenuInfo)
+}
+
+
+class com.example.MAU.Notes.NoteDetailsActivity {
+~ ImageButton backButton
+# void onCreate(Bundle)
+}
+
+
+class com.example.MAU.LoginManager {
+~ EditText emailEditText
+~ Button loginButton
+~ ProgressBar progressBar
+~ TextView clickToReg2
+~ FirebaseAuth firebaseAuth
++ void onStart()
+# void onCreate(Bundle)
+- void loginUser(String,String)
+- boolean isUserLoggedIn()
+}
+
+
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Notes.AddNoteActivity
+androidx.fragment.app.Fragment <|-- com.example.MAU.Player.HomeFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Articles.EditArticleActivity
+com.example.MAU.Notes.NoteManager +.. com.example.MAU.Notes.NoteManager$OnDataRetrievedListener
+com.example.MAU.Notes.NoteManager +.. com.example.MAU.Notes.NoteManager$OnNoteClickListener
+com.example.MAU.Articles.Adapter <|-- com.example.MAU.Articles.ArticleAdapter
+com.example.MAU.Articles.ArticleAdapter +.. com.example.MAU.Articles.ArticleAdapter$OnArticleClickListener
+com.example.MAU.Articles.ArticleAdapter +.. com.example.MAU.Articles.ArticleAdapter$ArticleViewHolder
+com.example.MAU.Articles.ViewHolder <|-- com.example.MAU.Articles.ArticleAdapter$ArticleViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Login
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.MainActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Player.AddSongActivity
+androidx.fragment.app.Fragment <|-- com.example.MAU.Notes.ProfileFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Player.PlayerActivity
+androidx.fragment.app.Fragment <|-- com.example.MAU.SettingsFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Notes.EditNoteActivity
+com.example.MAU.Player.Adapter <|-- com.example.MAU.Player.SongAdapter
+com.example.MAU.Player.SongAdapter +.. com.example.MAU.Player.SongAdapter$OnItemLongClickListener
+com.example.MAU.Player.SongAdapter +.. com.example.MAU.Player.SongAdapter$SongViewHolder
+com.example.MAU.Player.ViewHolder <|-- com.example.MAU.Player.SongAdapter$SongViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.RegistrationManager
+com.google.firebase.messaging.FirebaseMessagingService <|-- com.example.MAU.Notification.PushService
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.WelcomeActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Articles.AddArticleActivity
+java.io.Serializable <|.. com.example.MAU.models.Note
+com.example.MAU.Articles.OnArticleClickListener <|.. com.example.MAU.Articles.ArticlesFragment
+androidx.fragment.app.Fragment <|-- com.example.MAU.Articles.ArticlesFragment
+java.io.Serializable <|.. com.example.MAU.models.Articles
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Articles.ArticleDetailsActivity
+com.example.MAU.Articles.ArticlesManager +.. com.example.MAU.Articles.ArticlesManager$OnDataRetrievedListener
+com.example.MAU.Articles.ArticlesManager +.. com.example.MAU.Articles.ArticlesManager$OnArticleRetrievedListener
+com.example.MAU.Notes.Adapter <|-- com.example.MAU.Notes.NoteAdapter
+com.example.MAU.Notes.NoteAdapter +.. com.example.MAU.Notes.NoteAdapter$NoteViewHolder
+com.example.MAU.Notes.OnCreateContextMenuListener <|.. com.example.MAU.Notes.NoteAdapter$NoteViewHolder
+com.example.MAU.Notes.ViewHolder <|-- com.example.MAU.Notes.NoteAdapter$NoteViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.Notes.NoteDetailsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.MAU.LoginManager
+@enduml

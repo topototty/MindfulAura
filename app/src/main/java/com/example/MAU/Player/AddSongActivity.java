@@ -78,7 +78,7 @@ public class AddSongActivity extends AppCompatActivity {
             audioUri = data.getData();
             if (!isAllowedFileType(audioUri)) {
                 Toast.makeText(this, "Выбранный файл имеет недопустимый формат", Toast.LENGTH_SHORT).show();
-                audioUri = null;  // Reset the URI if the file format is not allowed
+                audioUri = null;
             } else {
                 String fileName = getFileName(audioUri);
                 buttonChooseFile.setText(fileName);
@@ -110,7 +110,7 @@ public class AddSongActivity extends AppCompatActivity {
         String imageUrl = photoUrlEditText.getText().toString().trim();
 
         if (title.isEmpty() || description.isEmpty()) {
-            Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
             return;
         }
 

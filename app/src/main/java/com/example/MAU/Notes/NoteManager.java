@@ -55,6 +55,7 @@ public class NoteManager {
                 .addOnFailureListener(e -> Log.e("NoteManager", "Error deleting note: " + e.getMessage()));
     }
 
+
     public interface OnDataRetrievedListener {
         void onNotesRetrieved(List<Note> notes);
         void onError(String errorMessage);

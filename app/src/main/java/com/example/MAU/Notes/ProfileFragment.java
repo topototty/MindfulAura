@@ -1,6 +1,7 @@
 package com.example.MAU.Notes;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -67,6 +68,8 @@ public class ProfileFragment extends Fragment {
 
             userEmail.setText(user.getEmail());
             userLogin.setText(user.getDisplayName());
+
+            Log.d("ProfileFragment", "Загрузка заметок для пользователя: " + user.getUid());
 
             loadNotes(user.getUid());
         }

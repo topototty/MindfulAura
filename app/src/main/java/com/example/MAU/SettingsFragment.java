@@ -412,10 +412,11 @@ public class SettingsFragment extends Fragment {
     }
 
     private boolean validateUsername(String username) {
-        return username.length() > 6 && username.matches(".*[A-Z].*") && username.matches("[a-zA-Z]+");
+        return username.length() > 6 && username.matches(".*[A-Z].*") && username.matches("[a-zA-Z]+") && !username.contains(" ");
     }
 
     private boolean validatePassword(String password) {
-        return password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*[!@#$%^&*+=?-].*");
+        return password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*[!@#$%^&*+=?-].*") && !password.contains(" ");
     }
+
 }
